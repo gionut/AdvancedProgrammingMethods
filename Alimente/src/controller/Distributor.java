@@ -1,4 +1,6 @@
 package controller;
+import exceptions.DuplicateElement;
+import exceptions.NonExistingElement;
 import model.Aliment;
 import repository.Repository;
 
@@ -11,7 +13,13 @@ public class Distributor implements Controller{
     }
 
     @Override
-    public void addProduct(Aliment aliment)
+    public void removeProduct (Aliment aliment) throws NonExistingElement
+    {
+        deposit.removeAliment(aliment);
+    }
+
+    @Override
+    public void addProduct(Aliment aliment) throws DuplicateElement
     {
         deposit.addAliment(aliment);
     }

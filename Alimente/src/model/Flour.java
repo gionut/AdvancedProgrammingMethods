@@ -11,6 +11,15 @@ public class Flour implements Aliment{
     }
 
     @Override
+    public boolean equals(Aliment aliment)
+    {
+        return name.equals(aliment.getName());
+    }
+
+    @Override
+    public String getName(){return name;}
+
+    @Override
     public int getPrice()
     {
         return price;

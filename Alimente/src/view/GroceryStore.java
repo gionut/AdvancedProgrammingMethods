@@ -1,6 +1,8 @@
 package view;
 
 import controller.Controller;
+import exceptions.DuplicateElement;
+import exceptions.NonExistingElement;
 import model.Aliment;
 import model.Flour;
 import model.Salt;
@@ -20,6 +22,11 @@ public class GroceryStore implements View{
 
     public void showAlimentsMoreExpansiveThan(int price)
     {
+        if(price == -1) {
+            System.out.println("minimum price: ");
+            String priceString = read.next();
+            price = Integer.parseInt(priceString);
+        }
         Aliment[] aliments = distributor.filterProducts(price);
         for(Aliment aliment: aliments)
         {
@@ -29,17 +36,36 @@ public class GroceryStore implements View{
         }
     }
 
-    public void addAliment()
+    public void addAliment() throws DuplicateElement
     {
         System.out.println("base aliment: ");
-        String baseAliment = read.nextLine();
+        String baseAliment = read.next();
 
         System.out.println("name: ");
-        String name = read.nextLine();
+        String name = read.next();
 
         System.out.println("price: ");
-        int price = read.nextInt();
+        String priceString = read.next();
+        int price = Integer.parseInt(priceString);
 
+        Aliment aliment = createAliment(baseAliment, name, price);
+
+        distributor.addProduct(aliment);
+    }
+
+    private void removeAliment() throws NonExistingElement {
+        System.out.println("base aliment: ");
+        String baseAliment = read.next();
+
+        System.out.println("name: ");
+        String name = read.next();
+
+        Aliment aliment = createAliment(baseAliment, name, 0);
+
+        distributor.removeProduct(aliment);
+    }
+
+    private Aliment createAliment(String baseAliment, String name, int price) {
         Aliment aliment;
         switch(baseAliment)
         {
@@ -48,12 +74,10 @@ public class GroceryStore implements View{
             case "Salt" -> aliment = new Salt(name, price);
             default -> throw new IllegalStateException("Unexpected value: " + baseAliment);
         }
-
-        distributor.addProduct(aliment);
-
+        return aliment;
     }
 
-    private void populateDeposit()
+    private void populateDeposit() throws DuplicateElement
     {
         Aliment flour = new Flour("plainFlour", 10);
         Aliment flour000 = new Flour("refinedFlour",20);
@@ -73,30 +97,38 @@ public class GroceryStore implements View{
     @Override
     public void takeOrder()
     {
-        System.out.println("Give the order, please! The other are waiting...");
+        System.out.println("Give the order, please! The others are waiting...");
         String command;
-        command = read.nextLine();
+        command = read.next();
 
-        populateDeposit();
+        try {
+            populateDeposit();
+        }
+        catch (DuplicateElement e)
+        {}
 
         while(!command.equals("exit"))
         {
             try {
                 switch (command) {
-                    case "all" -> showAlimentsMoreExpansiveThan(0);
-                    case "filter" -> showAlimentsMoreExpansiveThan(20);
+                    case "inventory" -> showAlimentsMoreExpansiveThan(0);
+                    case "filter" -> showAlimentsMoreExpansiveThan(-1);
                     case "add" -> addAliment();
+                    case "remove"-> removeAliment();
                 }
             }
-            catch (NullPointerException e)
+            catch (DuplicateElement e)
+            {
+                System.out.println(e.toString());
+            }
+            catch(NonExistingElement e)
             {
                 System.out.println(e.toString());
             }
 
-            System.out.println("Give the order, please! The other are waiting...");
-            command = read.nextLine();
+            System.out.println("!!!Give the order, please! The others are waiting...");
+            command = read.next();
         }
-
-
     }
+
 }

@@ -1,0 +1,194 @@
+
+Thread: 10
+Execution Stack:int v; ref(int) a; v = 10; new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:int v;  | ref(int) a; v = 10; new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:ref(int) a; v = 10; new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: v -> 0; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:ref(int) a;  | v = 10; new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: v -> 0; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:v = 10; new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: a -> (null, int); v -> 0; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:v = 10;  | new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: a -> (null, int); v -> 0; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:new(a, 22); fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: a -> (null, int); v -> 10; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:new(a, 22);  | fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: a -> (null, int); v -> 10; 
+Files Table: 
+Heap: 
+Output: 
+
+
+Thread: 10
+Execution Stack:fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); ); write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 10
+Execution Stack:fork(writeHeap(a, 30); v = 32; write(v); write(readHeap(a)); );  | write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 10
+Execution Stack:write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 11
+Execution Stack:writeHeap(a, 30); v = 32; write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 10
+Execution Stack:write(v);  | write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 11
+Execution Stack:writeHeap(a, 30);  | v = 32; write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 22; 
+Output: 
+
+
+Thread: 10
+Execution Stack:write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+
+
+
+Thread: 11
+Execution Stack:v = 32; write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+
+
+
+Thread: 10
+Execution Stack:
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+
+
+
+Thread: 11
+Execution Stack:v = 32;  | write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 10; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+
+
+
+Thread: 11
+Execution Stack:write(v); write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 32; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+
+
+
+Thread: 11
+Execution Stack:write(v);  | write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 32; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+
+
+
+Thread: 11
+Execution Stack:write(readHeap(a));  | 
+Symbols Table: a -> (1, int); v -> 32; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+32
+
+
+
+Thread: 11
+Execution Stack:
+Symbols Table: a -> (1, int); v -> 32; 
+Files Table: 
+Heap: 1 -> 30; 
+Output: 10
+30
+32
+30
+
+
+
